@@ -1,0 +1,520 @@
+/* Reset general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Fondo principal */
+.main {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+#bgVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.5) 20%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(255, 0, 0, 0.6) 75%,
+    rgba(255, 0, 0, 0.9) 100%
+  );
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Logo giratorio */
+#lunaradiocoverwrapper {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  user-select: none;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  animation: spin 10s linear infinite, fadeIn 1.5s ease;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px 8px rgba(255, 0, 0, 0.4);
+}
+
+#lunaradiocoverwrapper::before {
+  content: '';
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,0,0,0.2) 60%, transparent 80%);
+  animation: pulse 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+#lunaradiocoverwrapper1 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: url('../assets/logo.png') center center / cover no-repeat;
+  border-radius: 50%;
+  transition: opacity 1s;
+  opacity: 1;
+  box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.6);
+}
+
+#lunaradiocoverwrapper2 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+/* Títulos */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+}
+
+/* Reproductor */
+.player-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  border-radius: 40px;
+  backdrop-filter: blur(10px);
+}
+
+.volume-control i {
+  font-size: 20px;
+  color: white;
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#volumeSlider {
+  width: 100px;
+}
+
+#volumeLabel {
+  font-size: 14px;
+  color: #fff;
+}
+
+#playButton {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 12px 14px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#playButton:hover {
+  background: #c0392b;
+  box-shadow: 0 0 12px 4px rgba(231, 76, 60, 0.7);
+}
+
+/* Canción */
+#songTitle {
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Subtítulo decorativo */
+.subtitulo {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #ffffff;
+  animation: pulseGlow 2s infinite;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  margin-bottom: 20px;
+}
+
+/* Redes sociales */
+.social-icons {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 3;
+}
+
+.social-icons a img {
+  width: 44px;              /* Más grande */
+  height: 44px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 50%;
+  object-fit: cover;        /* Asegura que todos luzcan iguales */
+}
+
+.social-icons a:hover img {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px white;
+}
+
+/* Footer */
+footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  z-index: 3;
+}
+
+/* Botón Play Store centrado arriba del logo */
+.install-app-centered {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.install-app-centered img {
+  height: 42px;
+}
+
+/* Menú hamburguesa */
+.menu-toggle {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 6;
+  width: 52px;
+  height: 52px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.menu-toggle img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Menú lateral */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -270px;
+  width: 270px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  transition: left 0.3s ease;
+  z-index: 5;
+  overflow-y: auto;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.menu-header {
+  text-align: center;
+  padding: 30px 20px 20px;
+}
+
+.menu-header img {
+  width: 120px;
+  border-radius: 8px;
+}
+
+.side-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.side-menu ul li {
+  border-bottom: 1px solid #eee;
+}
+
+.side-menu ul li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #000;
+  font-size: 15px;
+  text-transform: uppercase;
+  transition: background 0.3s;
+}
+
+.side-menu ul li a i {
+  width: 22px;
+  text-align: center;
+}
+
+.side-menu ul li a:hover {
+  background: #f8f8f8;
+}
+
+.side-menu hr {
+  margin: 15px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.menu-share {
+  padding: 10px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-share a {
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 6px;
+}
+
+.menu-share .fb-share {
+  color: #1877f2;
+  background: #e7f0ff;
+}
+
+.menu-share .wa-share {
+  color: #25d366;
+  background: #e6ffef;
+}
+
+/* Animaciones */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+
+@keyframes pulseGlow {
+  0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); opacity: 1; }
+  50% { text-shadow: 0 0 20px rgba(255, 0, 0, 1); opacity: 0.7; }
+  100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); opacity: 1; }
+}
+/* ======== MEDIA QUERIES RESPONSIVE ======== */
+@media screen and (max-width: 768px) {
+  .player-container {
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .progress-bar {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  #volumeSlider {
+    width: 120px;
+  }
+
+  .content h2 {
+    font-size: 1.5rem;
+  }
+
+  .content h3 {
+    font-size: 1rem;
+  }
+
+  #songTitle {
+    font-size: 0.9rem;
+  }
+
+  .social-icons {
+    right: 5px;
+    top: auto;
+    bottom: 20px;
+    flex-direction: row;
+    justify-content: center;
+    left: 0;
+    width: 100%;
+    transform: none;
+  }
+
+  .social-icons a {
+    font-size: 20px;
+  }
+
+  .install-app-centered {
+    top: 10px;
+  }
+
+  #lunaradiocoverwrapper {
+    width: 140px;
+    height: 140px;
+  }
+
+  #lunaradiocoverwrapper::before {
+    width: 180px;
+    height: 180px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 0 10px;
+    bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .menu-toggle {
+    font-size: 22px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .side-menu {
+    width: 240px;
+  }
+
+  .side-menu ul li a {
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  .menu-share a {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .install-app-centered img {
+    height: 36px;
+  }
+}
+.menu-toggle.menu-opened {
+  color: #000; /* Cambia a negro */
+}
+.overlay-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+.overlay-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6) 0%,       /* Negro arriba */
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(255, 0, 0, 0.0) 50%,    /* Transparente al centro */
+    rgba(255, 0, 0, 0.2) 75%,    /* Rojo suave abajo */
+    rgba(255, 0, 0, 0.65) 100%   /* Rojo fuerte al fondo */
+  );
+  z-index: 1;
+  pointer-events: none;
+}
